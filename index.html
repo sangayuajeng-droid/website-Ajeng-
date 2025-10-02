@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="xxxxxxxxxxxxxxxxxxxx" />
+  <title>Portfolio | Sang Ayu Made Ajeng Wulandari</title>
+  <style>
+
+    /* Home Section */
+    #home {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Teks berjalan */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+      font-size: 1.2em;
+      color: #d1b3ff;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Typing effect */
+    .typing-text {
+      border-right: 2px solid #9f7aea;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      width: 0;
+      animation: typing 4s steps(30, end) infinite alternate, blink 0.8s infinite;
+      font-size: 1.4em;
+      color: #d1b3ff;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Animated circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(159, 122, 234, 0.3);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .c1 { width: 120px; height: 120px; top: 15%; left: 10%; }
+    .c2 { width: 80px; height: 80px; bottom: 20%; right: 15%; animation-delay: 2s; }
+    .c3 { width: 60px; height: 60px; top: 30%; right: 25%; animation-delay: 4s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Glow button */
+    .glow-btn {
+      position: relative;
+      box-shadow: 0 0 15px #9f7aea;
+      transition: 0.3s;
+    }
+
+    .glow-btn:hover {
+      box-shadow: 0 0 25px #d1b3ff, 0 0 50px #9f7aea;
+      transform: scale(1.05);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+    }
+
+    header {
+     position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center; /* Semua isi header rata tengah */
+      align-items: center;
+      gap: 400px; /* jarak antara judul dan menu */
+      padding: 15px 30px;
+      z-index: 100;
+    }
+     nav { 
+      display: flex;
+      gap: 20px; /* jarak antar link */
+    }
+
+
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #9f7aea;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #3d2d5e;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      background: #9f7aea;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #6b46c1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 300px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .portfolio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+    }
+
+    input, textarea {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+    section {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  /* Variasi arah */
+  .fade-up    { transform: translateY(50px); }
+  .fade-down  { transform: translateY(-50px); }
+  .fade-left  { transform: translateX(-50px); }
+  .fade-right { transform: translateX(50px); }
+
+  /* Saat terlihat */
+  .visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  /* Background Animasi Bintang */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* supaya di belakang konten */
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Bintang */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Lingkaran bergerak */
+.circle-move {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(159, 122, 234, 0.2);
+  animation: float-move 15s linear infinite;
+}
+
+@keyframes float-move {
+  from { transform: translateY(0) translateX(0); }
+  to { transform: translateY(-200px) translateX(200px); }
+}
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* hitam ungu gradasi */
+    color: white;
+  }
+
+  /* Kotak transparan untuk semua section */
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  /* Tambahan: table-box agar tiap tulisan rapi */
+  .table-box {
+    background: rgba(20, 20, 40, 0.6); /* hitam transparan */
+    border: 1px solid rgba(159, 122, 234, 0.5); /* garis ungu */
+    border-radius: 12px;
+    padding: 20px 30px;
+    margin: 15px;
+    max-width: 800px;
+    box-shadow: 0 0 15px rgba(159, 122, 234, 0.3);
+  }
+
+  h2, h3 {
+    color: #d1b3ff; /* ungu terang */
+    margin-bottom: 15px;
+  }
+
+  p {
+    line-height: 1.6;
+    color: #eee;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6b46c1, #9f7aea);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #9f7aea, #b794f4);
+    box-shadow: 0 0 20px #9f7aea;
+  }
+
+  .card {
+    background: rgba(30, 30, 60, 0.6);
+    margin: 10px;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 300px;
+    transition: transform 0.3s;
+    border: 1px solid rgba(159, 122, 234, 0.5);
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(159, 122, 234, 0.6);
+  }
+ /* Styling gambar prestasi */
+#achievement .card img {
+  width: 100%;
+  aspect-ratio: 1/1; /* Selalu persegi */
+  object-fit: cover;
+  border-radius: 12px;
+  padding: 4px;
+  background: linear-gradient(135deg, #a855f7, #9333ea, #7e22ce);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+  cursor: pointer; /* Jadi seperti tombol */
+  transition: 0.3s ease-in-out;
+}
+
+#achievement .card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 1), 0 0 60px rgba(147, 51, 234, 0.9);
+}
+
+/* Popup modal */
+.modal {
+  display: none; /* Default tersembunyi */
+  position: fixed;
+  z-index: 9999;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(15, 12, 41, 0.95);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 1);
+  animation: zoomIn 0.5s;
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.5); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
+}
+
+/* Tombol close */
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #a855f7;
+}
+/* Education Section */
+#education {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#education h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.edu-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #8e2de2, #4a00e0) 1;
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(142, 45, 226, 0.8);
+}
+
+.edu-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #8e2de2, #4a00e0) 1;
+  box-shadow: 0 0 15px rgba(142, 45, 226, 0.7);
+  margin-bottom: 15px;
+}
+
+.edu-card p {
+  color: #fff;
+  font-size: 0.9em;
+  line-height: 1.4em;
+}
+.education-grid {
+  display: flex;             /* dari grid jadi flex */
+  justify-content: center;   /* posisi di tengah */
+  gap: 25px;                 /* jarak antar sekolah */
+  flex-wrap: wrap;         /* semua sejajar, tidak turun ke bawah */
+}
+/* Contact links container */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+/* Kotak neon */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+/* Email kotak neon biru */
+.contact-box.email {
+  border-image: linear-gradient(45deg, #3a7bd5, #3a6073) 1;
+  box-shadow: 0 0 15px rgba(58, 123, 213, 0.7);
+}
+.contact-box.email:hover {
+  background: linear-gradient(45deg, #3a7bd5, #3a6073);
+  box-shadow: 0 0 25px rgba(58, 123, 213, 0.9);
+}
+
+/* Instagram kotak neon gradasi */
+.contact-box.instagram {
+  border-image: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5) 1;
+  box-shadow: 0 0 15px rgba(214, 41, 118, 0.7);
+}
+.contact-box.instagram:hover {
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  box-shadow: 0 0 25px rgba(214, 41, 118, 0.9);
+}
+
+  </style>
+</head>
+<body>
+  <div class="background" id="background"></div>
+<header>
+  <h1>Ajeng Wulandari</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#certification">Certification</a>
+    <a href="#achievement">Prestasi</a> 
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="fade-up">
+  <div class="welcome-container">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      
+      <!-- Foto Profil dengan efek glow -->
+      <div style="position:relative; display:inline-block;">
+        <img src="img/foto-ajeng2.jpg" alt="Foto Profil Sang Ayu Made Ajeng Wulandari" 
+             style="width:220px; height:220px; border-radius:50%; object-fit:cover; 
+             border:4px solid #9f7aea; box-shadow:0 0 25px rgba(159,122,234,0.8);">
+      </div>
+      
+      <!-- Typing text -->
+      <h3>
+        <span class="typing-text">Hi, I am Sang Ayu Made Ajeng Wulandari</span>
+      </h3>
+      
+      <!-- Deskripsi -->
+      <div class="table-box">
+        <p style="max-width:650px; margin-top:10px;">
+          Mahasiswa Sistem Informasi yang antusias mengembangkan pengalaman digital inovatif 
+          dan siap berkontribusi nyata bagi masyarakat melalui teknologi & kewirausahaan.
+        </p>
+      </div>
+      
+      <!-- Tombol -->
+      <div style="margin-top:20px;">
+        <a href="#about" class="btn glow-btn">🚀 Explore My Journey</a>
+        <a href="#achievement" class="btn glow-btn">🏆 My Achievements</a>
+      </div>
+    </div>
+
+    <!-- Teks berjalan -->
+    <div class="marquee">
+      <span>🌟 Selamat datang di portofolio saya | Mahasiswa Sistem Informasi | Suka berbisnis dan teknologi | Mari berkolaborasi! 🌟</span>
+    </div>
+
+    <!-- Circle animasi -->
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
+  </div>
+</section>
+
+
+<section id="about"class="fade-left">
+  <h2>About Me</h2>
+   <div class="table-box">
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    <img src="img/foto-ajeng.jpg" alt="Foto Profil Sang Ayu Made Ajeng Wulandari" 
+         style="width:200px; height:200px; border-radius:100%; object-fit:cover; margin-bottom:20px; border:4px solid #9f7aea;">
+  <p>Hello, I'm <b>Sang Ayu Made Ajeng Wulandari</b>.<br>
+     Tanggal Lahir: <b>13 Januari 2007</b><br>
+     Mahasiswa <b>Universitas Pendidikan Ganesha</b><br>
+     Fakultas: <b>Teknik dan Kejuruan</b><br>
+     Jurusan: <b>Teknik Informatika</b><br>
+     Program Studi: <b>Sistem Informasi</b><br><br>
+     <p style="max-width:600px; text-align:center; margin-top:15px; color:#ffffff;">
+        Saya memulai perjalanan akademik sebagai mahasiswa Teknik Informatika Universitas
+      Pendidikan Ganesha dengan rasa ingin tahu yang besar terhadap dunia teknologi.
+      Sejak semester awal, saya tertarik tidak hanya pada bagaimana sistem informasi
+      dibangun, tetapi juga bagaimana teknologi dapat menjadi solusi nyata bagi banyak orang.
+      Di sisi lain, saya memiliki ketertarikan kuat pada dunia bisnis. 
+      Bagi saya, teknologi dan bisnis adalah dua hal yang saling melengkapi. 
+      Dari pengalaman kecil seperti membuka usaha sederhana, saya belajar bagaimana
+       manajemen, strategi, dan kreativitas sangat penting untuk keberhasilan.</p>
+  </p>
+  <p style="max-width:600px; text-align:center; margin-top:15px; color:#d1b3ff;">
+      <b>Visi saya:</b> <i>Menggabungkan kemampuan teknis dan jiwa kewirausahaan 
+      untuk memberikan kontribusi nyata bagi masyarakat dan bangsa.</i>
+    </p>
+  <a href="c:\Users\darmayasa\Downloads\CV Ajeng Wulandari.pdf" target="_blank" class="btn">Download CV</a>
+  <a href="http://www.linkedin.com/in/ajeng-wulandari-b42a98386" target="_blank" class="btn">LinkedIn</a>
+  </div>
+</section>
+
+<!-- Pendidikan -->
+<section id="education" class="fade-right">
+  <h2>Riwayat Pendidikan</h2>
+  <div class="education-grid">
+
+    <!-- SD -->
+    <div class="edu-card">
+      <img src="img/logo-sd.png" alt="Logo SD" class="edu-logo">
+      <p>SD Negeri 2 Tusan<br>2013 – 2018</p>
+    </div>
+
+    <!-- SMP -->
+    <div class="edu-card">
+      <img src="img/logo-smp.jpg" alt="Logo SMP" class="edu-logo">
+      <p>SMP Negeri 1 Banjarangkan<br>2018 – 2021</p>
+    </div>
+
+    <!-- SMA -->
+    <div class="edu-card">
+      <img src="img/logo-sma.png" alt="Logo SMA" class="edu-logo">
+      <p>SMA Negeri 2 Semarapura<br>2021 – 2024</p>
+    </div>
+
+    <!-- Universitas -->
+    <div class="edu-card">
+      <img src="img/Logo_undiksha.png" alt="Logo Universitas" class="edu-logo">
+      <p>Universitas Pendidikan Ganesha<br>2024 – Sekarang</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Sertifikasi -->
+<section id="certification"class="fade-right">
+  <h2>Certification</h2>
+  <div class="portfolio-grid">
+    <div class="card">
+      <h3>Dicoding Academy</h3>
+      <p>Sertifikat Belajar Dasar Pemrograman java</p>
+      <a href="Sertifikat/sertifikat-pemograman-java.pdf" target="_blank" class="btn">Lihat Sertifikat</a>
+    </div>
+    <div class="card">
+      <h3>Dicoding Academy</h3>
+      <p>Sertifikat Belajar Dasar Pemograman C</p>
+      <a href="Sertifikat/Sertifikat-pemograman-C.pdf" target="_blank" class="btn">Lihat Sertifikat</a>
+    </div>
+    <div class="card">
+      <h3>Dicoding Academy</h3>
+      <p>Sertifikat Belajar Dasar Manajemen Proyek</p>
+      <a href="Sertifikat/Sertifikat-dasar-Manajemen-Proyek.pdf" target="_blank" class="btn">Lihat Sertifikat</a>
+    </div>
+  </div>
+</section>
+
+<!-- Prestasi -->
+<section id="achievement" class="fade-down">
+  <h2>Prestasi</h2>
+  <div class="portfolio-grid">
+    <!-- Prestasi 1 -->
+    <div class="card">
+      <img src="img/rainas.jpg" alt="Prestasi 1" 
+           style="width:100%; border-radius:8px; margin-bottom:15px;">
+      <h3>Peserta Raimuna Nasional XII 2023</h3>
+      <p>Mengikuti Seleksi yang bergengsi untuk menjadi peserta Raimuna Nasional XII 2023 </p>
+    </div>
+    <!-- Prestasi 2 -->
+    <div class="card">
+      <img src="img/Juara-2-JB.jpg" alt="Prestasi 2" 
+           style="width:100%; border-radius:8px; margin-bottom:15px;">
+      <h3>Juara 2 Lomba Jegeg bagus tingkat SMA </h3>
+      <p>Meraih Juara 2 Lomba Jegeg Bagus Tingkat SMA yang diikuti oleh SMA sekabupaten Klungkung</p>
+    </div>
+    <!-- Prestasi 3 -->
+    <div class="card">
+      <img src="img/Juara-3-Ngewacen-AB.jpg" alt="Prestasi 3" 
+           style="width:100%; border-radius:8px; margin-bottom:15px;">
+      <h3>Juara 3 Lomba Ngewacen Aksara Bali </h3>
+      <p>Meraih Juara 3 Lomba Ngewacen Akasara bali dalam rangka Bulan bahasa bali.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="fade-up">
+  <h2>Contact Me</h2>
+
+  <!-- Info Kontak -->
+  <div class="contact-links">
+    <!-- Email -->
+    <a href="mailto:sang.ayu.ajeng@student.undiksha.ac.id" class="contact-box email">
+      <i class="fas fa-envelope"></i>
+      <span>Email</span>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/ajengaw.13" target="_blank" class="contact-box instagram">
+      <i class="fab fa-instagram"></i>
+      <span>@ajengaw.13</span>
+    </a>
+  </div>
+
+  <!-- Form kirim ke Formspree -->
+  <form id="contactForm" action="https://formspree.io/f/mjkaywog" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+</section>
+
+
+<!-- Script agar ada alert setelah submit -->
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const form = e.target;
+
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        alert("✅ Pesan berhasil dikirim! Terima kasih sudah menghubungi saya.");
+        form.reset();
+      } else {
+        alert("❌ Gagal mengirim pesan, coba lagi ya.");
+      }
+    }).catch(error => {
+      alert("⚠️ Terjadi kesalahan, coba lagi.");
+    });
+  });
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      } else {
+        // supaya bisa animasi ulang kalau discroll balik
+        entry.target.classList.remove("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Terima kasih sudah menghubungi! Saya akan segera membalas pesan Anda.");
+  });
+</script>
+<script>
+  // Ambil elemen background
+  const bg = document.getElementById("background");
+
+  // Generate bintang
+  for (let i = 0; i < 50; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    let size = Math.random() * 3 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.animationDuration = `${2 + Math.random() * 3}s`;
+    bg.appendChild(star);
+  }
+
+  // Generate lingkaran bergerak
+  for (let i = 0; i < 5; i++) {
+    const circle = document.createElement("div");
+    circle.className = "circle-move";
+    let size = Math.random() * 150 + 50;
+    circle.style.width = `${size}px`;
+    circle.style.height = `${size}px`;
+    circle.style.top = `${Math.random() * 100}vh`;
+    circle.style.left = `${Math.random() * 100}vw`;
+    circle.style.animationDuration = `${10 + Math.random() * 20}s`;
+    bg.appendChild(circle);
+  }
+  // Ambil modal
+  var modal = document.getElementById("imgModal");
+  var modalImg = document.getElementById("modalImg");
+  var closeBtn = document.getElementsByClassName("close")[0];
+
+  // Ambil semua gambar prestasi
+  var images = document.querySelectorAll("#achievement .card img");
+  images.forEach(img => {
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    }
+  });
+
+  // Tutup modal saat klik tombol X
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Tutup modal saat klik di luar gambar
+  modal.onclick = function(e) {
+    if (e.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<!-- Modal -->
+<div id="imgModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+</body>
+</html>
